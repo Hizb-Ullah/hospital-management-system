@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Departments — MediCare</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .page-hero {
+      padding: 60px 48px 40px;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(14,138,122,0.12) 0%, transparent 60%);
+      text-align: center;
+    }
+    .dept-big-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .dept-big-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: center;
+    }
+    .dept-big-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    .dept-big-icon  { font-size: 40px; margin-bottom: 16px; }
+    .dept-big-name  { font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .dept-big-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .dept-big-count { font-size: 12px; color: var(--teal-light); font-weight: 500; }
+    @media (max-width: 900px) { .dept-big-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 500px) { .dept-big-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
+      </div>
+      <div>
+        <span class="logo-text">MediCare</span>
+        <span class="logo-sub">Hospital System</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="doctors.html">Doctors</a></li>
+      <li><a href="departments.html" class="active">Departments</a></li>
+      <li><a href="appointments.html">Appointments</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html"    class="btn btn-ghost btn-sm">Log in</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <span class="section-tag">Hospital</span>
+    <h1>Our Departments</h1>
+    <p class="mt-2" style="max-width:500px;margin:12px auto 0">Comprehensive medical care across all major specialties.</p>
+  </div>
+
+  <div class="section">
+    <div class="dept-big-grid">
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">❤️</div>
+        <div class="dept-big-name">Cardiology</div>
+        <div class="dept-big-desc">Diagnosis and treatment of heart diseases, including coronary artery disease, heart failure, and arrhythmias.</div>
+        <div class="dept-big-count">12 Specialists &nbsp;·&nbsp; Room 101–110</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🧠</div>
+        <div class="dept-big-name">Neurology</div>
+        <div class="dept-big-desc">Treatment of nervous system disorders including stroke, epilepsy, Parkinson's disease, and migraines.</div>
+        <div class="dept-big-count">8 Specialists &nbsp;·&nbsp; Room 201–208</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🦴</div>
+        <div class="dept-big-name">Orthopedics</div>
+        <div class="dept-big-desc">Surgical and non-surgical treatment of musculoskeletal conditions, fractures, and joint replacements.</div>
+        <div class="dept-big-count">10 Specialists &nbsp;·&nbsp; Room 301–310</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">👶</div>
+        <div class="dept-big-name">Pediatrics</div>
+        <div class="dept-big-desc">Medical care for infants, children, and adolescents including vaccinations and developmental disorders.</div>
+        <div class="dept-big-count">9 Specialists &nbsp;·&nbsp; Room 401–409</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🔬</div>
+        <div class="dept-big-name">Oncology</div>
+        <div class="dept-big-desc">Diagnosis and treatment of all types of cancer using chemotherapy, radiation, and surgical oncology.</div>
+        <div class="dept-big-count">7 Specialists &nbsp;·&nbsp; Room 501–507</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🫁</div>
+        <div class="dept-big-name">Pulmonology</div>
+        <div class="dept-big-desc">Treatment of respiratory diseases including asthma, COPD, pneumonia, and sleep disorders.</div>
+        <div class="dept-big-count">6 Specialists &nbsp;·&nbsp; Room 601–606</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🦷</div>
+        <div class="dept-big-name">Dermatology</div>
+        <div class="dept-big-desc">Skin, hair, and nail disorders including eczema, psoriasis, acne, and skin cancer screening.</div>
+        <div class="dept-big-count">5 Specialists &nbsp;·&nbsp; Room 701–705</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">👁️</div>
+        <div class="dept-big-name">Ophthalmology</div>
+        <div class="dept-big-desc">Eye care including cataract surgery, glaucoma treatment, laser correction, and retinal disorders.</div>
+        <div class="dept-big-count">5 Specialists &nbsp;·&nbsp; Room 801–805</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">💊</div>
+        <div class="dept-big-name">Pharmacy</div>
+        <div class="dept-big-desc">Full-service in-house pharmacy dispensing prescribed medications with complete stock management.</div>
+        <div class="dept-big-count">Full service &nbsp;·&nbsp; Ground Floor</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🧪</div>
+        <div class="dept-big-name">Laboratory</div>
+        <div class="dept-big-desc">Blood tests, urinalysis, microbiology, pathology, and radiology available around the clock.</div>
+        <div class="dept-big-count">24/7 service &nbsp;·&nbsp; Basement Floor</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🛏️</div>
+        <div class="dept-big-name">General Ward</div>
+        <div class="dept-big-desc">In-patient admission with bed management, nursing care, and round-the-clock monitoring.</div>
+        <div class="dept-big-count">80 Beds &nbsp;·&nbsp; Floor 2 &amp; 3</div>
+      </div>
+
+      <div class="dept-big-card">
+        <div class="dept-big-icon">🚨</div>
+        <div class="dept-big-name">Emergency</div>
+        <div class="dept-big-desc">24/7 emergency care for critical cases, trauma, accidents, and life-threatening conditions.</div>
+        <div class="dept-big-count">Always open &nbsp;·&nbsp; Main Entrance</div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">MediCare Hospital</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="tel:115">Emergency: 115</a>
+    </div>
+    <div class="footer-copy">Group 16 &mdash; Hospital Management System</div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

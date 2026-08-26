@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare — Hospital Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <nav class="navbar">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
+      </div>
+      <div>
+        <span class="logo-text">MediCare</span>
+        <span class="logo-sub">Hospital System</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/doctors.html">Doctors</a></li>
+      <li><a href="pages/departments.html">Departments</a></li>
+      <li><a href="pages/appointments.html">Appointments</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="pages/login.html"    class="btn btn-ghost btn-sm">Log in</a>
+      <a href="pages/register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════════ -->
+  <section class="hero-section">
+    <div class="hero-inner">
+
+      <!-- Left: headline + CTA -->
+      <div class="hero-left">
+        <div class="badge badge-teal mb-3 anim-fadeup">
+          <span class="dot-pulse"></span>
+          Now accepting new patients
+        </div>
+
+        <h1 class="anim-fadeup delay-1">
+          Advanced Care,<br>
+          <em>Closer to Home</em>
+        </h1>
+
+        <p class="mt-2 anim-fadeup delay-2" style="font-size:16px;max-width:440px;">
+          A complete hospital management system connecting patients,
+          doctors, nurses, pharmacists, and staff — all in one place.
+        </p>
+
+        <div class="d-flex gap-2 mt-3 anim-fadeup delay-3">
+          <a href="pages/register.html"    class="btn btn-primary btn-lg">Get Started</a>
+          <a href="pages/doctors.html"     class="btn btn-ghost   btn-lg">Meet Our Doctors</a>
+        </div>
+
+        <div class="stats-row mt-4 anim-fadeup delay-4">
+          <div>
+            <div class="stat-num">120+</div>
+            <div class="stat-label">Specialist Doctors</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div>
+            <div class="stat-num">18</div>
+            <div class="stat-label">Departments</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div>
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Emergency Care</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: quick booking form -->
+      <div class="card anim-fadein delay-2" style="border-radius:18px;">
+        <div class="card-title">Quick Appointment</div>
+
+        <form action="pages/book_appointment.php" method="POST">
+          <div class="form-group">
+            <label for="dept">Department</label>
+            <select id="dept" name="department" class="form-control" required>
+              <option value="">Select department</option>
+              <option>Cardiology</option>
+              <option>Neurology</option>
+              <option>Orthopedics</option>
+              <option>Pediatrics</option>
+              <option>Oncology</option>
+              <option>General Medicine</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="doctor">Doctor</label>
+            <select id="doctor" name="doctor_id" class="form-control" required>
+              <option value="">Select doctor</option>
+              <option value="1">Dr. Ahmed Khan — Cardiology</option>
+              <option value="2">Dr. Sara Malik  — Neurology</option>
+              <option value="3">Dr. Usman Ali   — Orthopedics</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="appt-date">Date</label>
+              <input type="date" id="appt-date" name="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="appt-time">Time</label>
+              <select id="appt-time" name="time" class="form-control" required>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+                <option value="16:00">04:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pat-name">Your full name</label>
+            <input type="text" id="pat-name" name="patient_name"
+                   class="form-control" placeholder="e.g. Ali Raza" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pat-phone">Phone number</label>
+            <input type="tel" id="pat-phone" name="phone"
+                   class="form-control" placeholder="03XX-XXXXXXX" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full mt-1">
+            Book Appointment
+          </button>
+        </form>
+      </div>
+
+    </div><!-- /hero-inner -->
+  </section><!-- /hero-section -->
+
+
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════
+       DEPARTMENTS
+  ════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">Departments</span>
+        <h2 class="section-title">Our Specialties</h2>
+        <p class="section-sub">World-class specialists across all major medical disciplines.</p>
+      </div>
+      <a href="pages/departments.html" class="btn btn-ghost">View all</a>
+    </div>
+
+    <div class="dept-grid">
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">❤️</div>
+        <div class="dept-name">Cardiology</div>
+        <div class="dept-count">12 Specialists</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">🧠</div>
+        <div class="dept-name">Neurology</div>
+        <div class="dept-count">8 Specialists</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">🦴</div>
+        <div class="dept-name">Orthopedics</div>
+        <div class="dept-count">10 Specialists</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">👶</div>
+        <div class="dept-name">Pediatrics</div>
+        <div class="dept-count">9 Specialists</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">🔬</div>
+        <div class="dept-name">Oncology</div>
+        <div class="dept-count">7 Specialists</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">💊</div>
+        <div class="dept-name">Pharmacy</div>
+        <div class="dept-count">Full service</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">🧪</div>
+        <div class="dept-name">Laboratory</div>
+        <div class="dept-count">24/7 service</div>
+      </div>
+      <div class="dept-card card card-hover" onclick="location.href='pages/departments.html'">
+        <div class="dept-icon">🏥</div>
+        <div class="dept-name">Emergency</div>
+        <div class="dept-count">Always open</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════
+       FEATURES STRIP
+  ════════════════════════════════════════ -->
+  <div class="feature-strip">
+    <div class="section">
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <h5>Online Appointment Booking</h5>
+          <p class="mt-1">Book with any doctor in any department. Choose your preferred date, time, and get instant confirmation.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <h5>Digital Medical Records</h5>
+          <p class="mt-1">All diagnoses, prescriptions, lab tests, and treatment history stored securely and accessible anytime.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <h5>Integrated Billing &amp; Pharmacy</h5>
+          <p class="mt-1">Transparent billing, online payments, and a fully integrated pharmacy — all under one roof.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-logo">MediCare Hospital</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="pages/contact.html">Contact Us</a>
+      <a href="tel:115">Emergency: 115</a>
+    </div>
+    <div class="footer-copy">Group 16 &mdash; Hospital Management System</div>
+  </footer>
+
+
+  <script src="js/main.js"></script>
+
+  <!-- Page-specific styles -->
+  <style>
+    /* Hero */
+    .hero-section {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 48px;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(14,138,122,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 30%, rgba(26,82,118,0.20) 0%, transparent 60%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Departments */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .dept-card {
+      text-align: center;
+      cursor: pointer;
+      padding: 24px 16px;
+    }
+    .dept-icon  { font-size: 28px; margin-bottom: 12px; }
+    .dept-name  { font-size: 14px; font-weight: 600; color: var(--white); }
+    .dept-count { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* Features */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .feature-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: rgba(14,138,122,0.22);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner    { grid-template-columns: 1fr; gap: 40px; }
+      .dept-grid     { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid  { grid-template-columns: 1fr; gap: 28px; }
+      .hero-section  { padding: 40px 24px; }
+    }
+    @media (max-width: 480px) {
+      .dept-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — MediCare</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Page layout ── */
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(14,138,122,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(26,82,118,0.14) 0%, transparent 60%);
+    }
+
+    /* ── Register box ── */
+    .reg-box {
+      width: 100%;
+      max-width: 540px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+    }
+
+    /* ── Header ── */
+    .reg-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .reg-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+    .reg-header h2 { font-size: 26px; margin-bottom: 6px; }
+    .reg-header p  { font-size: 14px; color: var(--muted); }
+
+    /* ── Step panels ── */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    /* ── Bottom link ── */
+    .bottom-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bottom-link a { color: var(--teal-light); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="reg-box anim-fadeup">
+
+      <!-- Header -->
+      <div class="reg-header">
+        <a class="reg-logo" href="../index.html">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
+          </div>
+          <div>
+            <span class="logo-text">MediCare</span>
+            <span class="logo-sub">Hospital System</span>
+          </div>
+        </a>
+        <h2>Create your account</h2>
+        <p>Join MediCare as a patient, doctor, or staff member</p>
+      </div>
+
+      <!-- Step dots -->
+      <div class="step-dots">
+        <div class="step-dot active"  id="dot-1"></div>
+        <div class="step-dot"         id="dot-2"></div>
+        <div class="step-dot"         id="dot-3"></div>
+      </div>
+
+      <!-- Form -->
+      <form id="reg-form" action="register.php" method="POST" novalidate>
+
+        <!-- ── STEP 1: Personal Info ── -->
+        <div class="step-panel active" id="step-1">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First name</label>
+              <input type="text" id="fname" name="first_name"
+                     class="form-control" placeholder="Ali" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" name="last_name"
+                     class="form-control" placeholder="Raza" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email"
+                   class="form-control" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone"
+                   class="form-control" placeholder="03XX-XXXXXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pw1">Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="pw1" name="password"
+                     class="form-control" placeholder="Minimum 6 characters" required>
+              <button type="button" class="pw-toggle"
+                      onclick="togglePassword('pw1', this)">👁</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pw2">Confirm password</label>
+            <div class="pw-wrap">
+              <input type="password" id="pw2" name="confirm_password"
+                     class="form-control" placeholder="Repeat password" required>
+              <button type="button" class="pw-toggle"
+                      onclick="togglePassword('pw2', this)">👁</button>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-full mt-2"
+                  onclick="goStep(2)">Continue &rarr;</button>
+        </div>
+
+
+        <!-- ── STEP 2: Role Selection ── -->
+        <div class="step-panel" id="step-2">
+          <p class="mb-2" style="font-size:14px">
+            Select your role in the hospital system:
+          </p>
+
+          <div class="role-grid">
+            <label class="role-card">
+              <input type="radio" name="role_id" value="5">
+              <span class="role-icon">🧑‍⚕️</span>
+              <div class="role-name">Patient</div>
+              <div class="role-desc">Book appointments &amp; view records</div>
+            </label>
+
+            <label class="role-card">
+              <input type="radio" name="role_id" value="1">
+              <span class="role-icon">👨‍⚕️</span>
+              <div class="role-name">Doctor</div>
+              <div class="role-desc">Manage appointments &amp; records</div>
+            </label>
+
+            <label class="role-card">
+              <input type="radio" name="role_id" value="2">
+              <span class="role-icon">👩‍⚕️</span>
+              <div class="role-name">Nurse</div>
+              <div class="role-desc">Assist doctors &amp; patients</div>
+            </label>
+
+            <label class="role-card">
+              <input type="radio" name="role_id" value="3">
+              <span class="role-icon">💊</span>
+              <div class="role-name">Pharmacist</div>
+              <div class="role-desc">Manage medicine &amp; prescriptions</div>
+            </label>
+
+            <label class="role-card">
+              <input type="radio" name="role_id" value="4">
+              <span class="role-icon">🔬</span>
+              <div class="role-name">Technician</div>
+              <div class="role-desc">Handle lab tests &amp; results</div>
+            </label>
+
+            <label class="role-card">
+              <input type="radio" name="role_id" value="6">
+              <span class="role-icon">🗂️</span>
+              <div class="role-name">Receptionist</div>
+              <div class="role-desc">Front desk &amp; billing</div>
+            </label>
+          </div>
+
+          <div class="d-flex gap-2 mt-3">
+            <button type="button" class="btn btn-ghost"
+                    style="flex:1" onclick="goStep(1)">&larr; Back</button>
+            <button type="button" class="btn btn-primary"
+                    style="flex:2" onclick="goStep(3)">Continue &rarr;</button>
+          </div>
+        </div>
+
+
+        <!-- ── STEP 3: Role Details ── -->
+        <div class="step-panel" id="step-3">
+          <p class="mb-3" style="font-size:14px">
+            Almost there! A few more details:
+          </p>
+
+          <!-- Injected by JS based on chosen role -->
+          <div id="extra-fields"></div>
+
+          <!-- Common fields -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dob">Date of birth</label>
+              <input type="date" id="dob" name="dob" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" class="form-control">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 mt-2">
+            <button type="button" class="btn btn-ghost"
+                    style="flex:1" onclick="goStep(2)">&larr; Back</button>
+            <button type="submit" class="btn btn-primary"
+                    style="flex:2">Create Account</button>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="or-divider">or</div>
+      <div class="bottom-link">
+        Already have an account? <a href="login.html">Log in here</a>
+      </div>
+
+    </div><!-- /reg-box -->
+  </div><!-- /page-wrap -->
+
+
+  <script src="../js/main.js"></script>
+  <script>
+    let currentStep = 1;
+
+    function goStep(next) {
+      // Validate before moving forward
+      if (next > currentStep) {
+        if (currentStep === 1 && !validateStep1()) return;
+        if (currentStep === 2 && !validateStep2()) return;
+        if (currentStep === 2) injectExtraFields();
+      }
+
+      document.getElementById('step-' + currentStep).classList.remove('active');
+      document.getElementById('step-' + next).classList.add('active');
+
+      // Update dots
+      for (let i = 1; i <= 3; i++) {
+        const dot = document.getElementById('dot-' + i);
+        dot.className = 'step-dot';
+        if (i < next)       dot.classList.add('done');
+        else if (i === next) dot.classList.add('active');
+      }
+
+      currentStep = next;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateStep1() {
+      clearAllErrors();
+      let ok = true;
+      const fname = document.getElementById('fname');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const pw1   = document.getElementById('pw1');
+      const pw2   = document.getElementById('pw2');
+
+      if (fname.value.trim().length < 2)  { showFieldError(fname, 'Enter your first name'); ok = false; }
+      if (!isValidEmail(email.value))      { showFieldError(email, 'Enter a valid email');   ok = false; }
+      if (phone.value.trim().length < 7)  { showFieldError(phone, 'Enter phone number');     ok = false; }
+      if (pw1.value.length < 6)           { showFieldError(pw1,   'Min 6 characters');       ok = false; }
+      if (pw2.value !== pw1.value)        { showFieldError(pw2,   'Passwords do not match'); ok = false; }
+      return ok;
+    }
+
+    function validateStep2() {
+      const selected = document.querySelector('[name="role_id"]:checked');
+      if (!selected) {
+        alert('Please select a role to continue.');
+        return false;
+      }
+      return true;
+    }
+
+    function injectExtraFields() {
+      const roleVal = document.querySelector('[name="role_id"]:checked').value;
+      document.getElementById('extra-fields').innerHTML = getRoleExtraFields(roleVal);
+    }
+  </script>
+
+</body>
+</html>

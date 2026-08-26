@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — MediCare</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(14,138,122,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(26,82,118,0.14) 0%, transparent 60%);
+    }
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+    .login-header h2 { font-size: 26px; margin-bottom: 6px; }
+    .login-header p  { font-size: 14px; color: var(--muted); }
+    .forgot-link {
+      display: block;
+      font-size: 12px;
+      color: var(--teal-light);
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+    .bottom-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bottom-link a { color: var(--teal-light); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <div class="login-box anim-fadeup">
+
+      <!-- Header -->
+      <div class="login-header">
+        <a class="login-logo" href="../index.html">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
+          </div>
+          <div>
+            <span class="logo-text">MediCare</span>
+            <span class="logo-sub">Hospital System</span>
+          </div>
+        </a>
+        <h2>Welcome back</h2>
+        <p>Log in to your MediCare account</p>
+      </div>
+
+      <!-- PHP will echo error here, e.g.: -->
+      <!-- <div class="alert alert-danger">Invalid email or password.</div> -->
+
+      <form id="login-form" action="login.php" method="POST" novalidate>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email"
+                 class="form-control" placeholder="you@example.com"
+                 required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="pw">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="pw" name="password"
+                   class="form-control" placeholder="Your password" required>
+            <button type="button" class="pw-toggle"
+                    onclick="togglePassword('pw', this)">👁</button>
+          </div>
+        </div>
+
+        <a class="forgot-link" href="forgot_password.php">Forgot password?</a>
+
+        <button type="submit" class="btn btn-primary btn-full">Log in</button>
+
+      </form>
+
+      <div class="or-divider">or</div>
+      <div class="bottom-link">
+        Don't have an account? <a href="register.html">Register here</a>
+      </div>
+
+    </div><!-- /login-box -->
+  </div><!-- /page-wrap -->
+
+
+  <script src="../js/main.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      clearAllErrors();
+      let ok = true;
+
+      const email = document.getElementById('email');
+      const pw    = document.getElementById('pw');
+
+      if (!isValidEmail(email.value)) {
+        showFieldError(email, 'Enter a valid email address');
+        ok = false;
+      }
+      if (pw.value.length < 6) {
+        showFieldError(pw, 'Password is required');
+        ok = false;
+      }
+
+      if (!ok) e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>

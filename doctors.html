@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctors — MediCare</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .page-hero {
+      padding: 60px 48px 40px;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(14,138,122,0.12) 0%, transparent 60%);
+      text-align: center;
+    }
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--teal);
+      color: var(--teal-light);
+      background: rgba(14,138,122,0.08);
+    }
+    /* Doctors grid */
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .doctor-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .doctor-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+    .doc-avatar {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+    }
+    .doc-name   { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .doc-spec   { font-size: 12px; color: var(--teal-light); font-weight: 500; margin-bottom: 12px; }
+    .doc-meta   { display: flex; gap: 16px; flex-wrap: wrap; }
+    .doc-meta span { font-size: 12px; color: var(--muted); }
+    .doc-avail  {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 500; color: #5dca8a; margin-top: 14px;
+    }
+    .doc-avail::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: #5dca8a;
+    }
+    .doc-busy { color: var(--muted); }
+    .doc-busy::before { background: var(--muted); }
+
+    .book-btn {
+      margin-top: 16px;
+      width: 100%;
+      padding: 9px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .book-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal-light);
+      background: rgba(14,138,122,0.06);
+    }
+
+    @media (max-width: 900px) { .doctors-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 500px) { .doctors-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="logo" href="../index.html">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14h-2v-4H6v-2h4V7h2v4h4v2h-4v4z"/></svg>
+      </div>
+      <div>
+        <span class="logo-text">MediCare</span>
+        <span class="logo-sub">Hospital System</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="doctors.html" class="active">Doctors</a></li>
+      <li><a href="departments.html">Departments</a></li>
+      <li><a href="appointments.html">Appointments</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html"    class="btn btn-ghost btn-sm">Log in</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <span class="section-tag">Our Team</span>
+    <h1>Meet Our Doctors</h1>
+    <p class="mt-2" style="max-width:500px;margin:12px auto 0">
+      Experienced, board-certified specialists dedicated to your health and wellbeing.
+    </p>
+  </div>
+
+  <div class="section">
+    <!-- Filter buttons -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterDoctors('all', this)">All</button>
+      <button class="filter-btn" onclick="filterDoctors('Cardiology', this)">Cardiology</button>
+      <button class="filter-btn" onclick="filterDoctors('Neurology', this)">Neurology</button>
+      <button class="filter-btn" onclick="filterDoctors('Orthopedics', this)">Orthopedics</button>
+      <button class="filter-btn" onclick="filterDoctors('Pediatrics', this)">Pediatrics</button>
+      <button class="filter-btn" onclick="filterDoctors('Oncology', this)">Oncology</button>
+      <button class="filter-btn" onclick="filterDoctors('General', this)">General</button>
+    </div>
+
+    <!-- Doctors grid -->
+    <div class="doctors-grid" id="doctors-grid">
+
+      <div class="doctor-card" data-dept="Cardiology">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#0e8a7a,#1a5276)">AK</div>
+        <div class="doc-name">Dr. Ahmed Khan</div>
+        <div class="doc-spec">Cardiologist</div>
+        <div class="doc-meta">
+          <span>15 yrs exp.</span>
+          <span>MBBS, FCPS</span>
+        </div>
+        <div class="doc-avail">Available today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" data-dept="Neurology">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#8e44ad,#1a5276)">SM</div>
+        <div class="doc-name">Dr. Sara Malik</div>
+        <div class="doc-spec">Neurologist</div>
+        <div class="doc-meta">
+          <span>11 yrs exp.</span>
+          <span>MBBS, MRCP</span>
+        </div>
+        <div class="doc-avail">Available today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" data-dept="Orthopedics">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#d35400,#1a5276)">UA</div>
+        <div class="doc-name">Dr. Usman Ali</div>
+        <div class="doc-spec">Orthopedic Surgeon</div>
+        <div class="doc-meta">
+          <span>18 yrs exp.</span>
+          <span>MBBS, MS Ortho</span>
+        </div>
+        <div class="doc-avail doc-busy">Busy today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" data-dept="Pediatrics">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#27ae60,#1a5276)">FH</div>
+        <div class="doc-name">Dr. Fatima Hassan</div>
+        <div class="doc-spec">Pediatrician</div>
+        <div class="doc-meta">
+          <span>9 yrs exp.</span>
+          <span>MBBS, DCH</span>
+        </div>
+        <div class="doc-avail">Available today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" data-dept="Oncology">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#c0392b,#1a5276)">ZQ</div>
+        <div class="doc-name">Dr. Zain Qureshi</div>
+        <div class="doc-spec">Oncologist</div>
+        <div class="doc-meta">
+          <span>14 yrs exp.</span>
+          <span>MBBS, MRCP</span>
+        </div>
+        <div class="doc-avail">Available today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" data-dept="General">
+        <div class="doc-avatar" style="background:linear-gradient(135deg,#2980b9,#1a5276)">NB</div>
+        <div class="doc-name">Dr. Nadia Baig</div>
+        <div class="doc-spec">General Physician</div>
+        <div class="doc-meta">
+          <span>7 yrs exp.</span>
+          <span>MBBS</span>
+        </div>
+        <div class="doc-avail">Available today</div>
+        <button class="book-btn" onclick="location.href='appointments.html'">Book Appointment</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">MediCare Hospital</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="tel:115">Emergency: 115</a>
+    </div>
+    <div class="footer-copy">Group 16 &mdash; Hospital Management System</div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function filterDoctors(dept, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.doctor-card').forEach(card => {
+        card.style.display = (dept === 'all' || card.dataset.dept === dept) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
