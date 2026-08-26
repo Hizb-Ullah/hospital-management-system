@@ -1,0 +1,13 @@
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+.env
+.env.local
+.env.*.local
+/vendor/
+*.bak
+*.dump
